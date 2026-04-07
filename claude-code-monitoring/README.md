@@ -3,6 +3,16 @@
 Push per-turn metrics from Claude Code to a Loki instance and visualize them in Grafana.
 Two dashboards are included: one for general token/cache/context metrics, one for model usage analysis.
 
+## Dashboards Preview
+
+**Claude Code Metrics** — token usage, cache health, context window, response times, rate limits
+
+![Claude Code Metrics](./Claude-Code-Metrics.png)
+
+**Claude Code — Model Usage** — per-model breakdown, turn distribution, response times by model
+
+![Claude Code Model Usage](./Claude-Code_Model-Usage.png)
+
 ## What gets tracked
 
 Every time Claude Code completes a turn, the following metrics are pushed to Loki:

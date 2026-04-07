@@ -61,6 +61,7 @@
         }
       ],
       "title": "Context Used",
+      "transformations": [],
       "type": "stat"
     },
     {
@@ -113,6 +114,7 @@
         }
       ],
       "title": "Context %",
+      "transformations": [],
       "type": "stat"
     },
     {
@@ -165,6 +167,7 @@
         }
       ],
       "title": "Cache Hit Ratio",
+      "transformations": [],
       "type": "stat"
     },
     {
@@ -217,6 +220,7 @@
         }
       ],
       "title": "Session Total Tokens",
+      "transformations": [],
       "type": "stat"
     },
     {
@@ -252,6 +256,7 @@
         }
       ],
       "title": "Cache Read",
+      "transformations": [],
       "type": "stat"
     },
     {
@@ -287,6 +292,7 @@
         }
       ],
       "title": "Cache Creation",
+      "transformations": [],
       "type": "stat"
     },
     {
@@ -340,6 +346,7 @@
         }
       ],
       "title": "Context Window",
+      "transformations": [],
       "type": "gauge"
     },
     {
@@ -393,6 +400,7 @@
         }
       ],
       "title": "Cache Health",
+      "transformations": [],
       "type": "gauge"
     },
     {
@@ -692,12 +700,13 @@
             "uid": "aeei85juwtji8e"
           },
           "expr": "max(last_over_time({job=\"claude-code\",type=\"metrics\"} | regexp \"turn_api_duration_ms=(?P<v>[1-9][0-9]{3,5})\" | unwrap v [24h])) / 1000",
-          "legendFormat": "Last",
+          "legendFormat": "",
           "queryType": "instant",
           "refId": "A"
         }
       ],
       "title": "Last API Response Time",
+      "transformations": [],
       "type": "stat"
     },
     {
@@ -745,12 +754,13 @@
             "uid": "aeei85juwtji8e"
           },
           "expr": "max(last_over_time({job=\"claude-code\",type=\"metrics\"} | regexp \"turn_total_duration_ms=(?P<v>[1-9][0-9]{3,5})\" | unwrap v [24h])) / 1000",
-          "legendFormat": "Last",
+          "legendFormat": "",
           "queryType": "instant",
           "refId": "A"
         }
       ],
       "title": "Last Total Response Time",
+      "transformations": [],
       "type": "stat"
     },
     {
@@ -887,12 +897,13 @@
             "uid": "aeei85juwtji8e"
           },
           "expr": "max(avg_over_time({job=\"claude-code\",type=\"metrics\"} | regexp \"turn_api_duration_ms=(?P<v>[1-9][0-9]{3,5})\" | unwrap v [24h])) / 1000",
-          "legendFormat": "Avg",
+          "legendFormat": "",
           "queryType": "instant",
           "refId": "A"
         }
       ],
       "title": "Avg API Response Time (24h)",
+      "transformations": [],
       "type": "stat"
     },
     {
@@ -949,12 +960,13 @@
             "uid": "aeei85juwtji8e"
           },
           "expr": "max(avg_over_time({job=\"claude-code\",type=\"metrics\"} | regexp \"turn_total_duration_ms=(?P<v>[1-9][0-9]{3,5})\" | unwrap v [24h])) / 1000",
-          "legendFormat": "Avg",
+          "legendFormat": "",
           "queryType": "instant",
           "refId": "A"
         }
       ],
       "title": "Avg Total Response Time (24h)",
+      "transformations": [],
       "type": "stat"
     }
   ],
@@ -967,5 +979,5 @@
   "timezone": "browser",
   "title": "Claude Code Metrics",
   "uid": "dfie2npgzl1xcb",
-  "version": 11
+  "version": 12
 }

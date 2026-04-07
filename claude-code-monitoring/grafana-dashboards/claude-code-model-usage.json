@@ -1,0 +1,1296 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": 24,
+  "links": [
+    {
+      "targetBlank": false,
+      "title": "Claude Code Metrics",
+      "type": "link",
+      "url": "/d/dfie2npgzl1xcb"
+    }
+  ],
+  "panels": [
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "color-background",
+            "fontSize": 20
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "lg",
+        "footer": {
+          "show": false
+        },
+        "showHeader": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "count_over_time({job=\"claude-code\", type=\"metrics\"} [24h])",
+          "legendFormat": "{{model}}",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Current Model",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "mode": "columns"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "host": true,
+              "job": true,
+              "type": true
+            },
+            "renameByName": {
+              "model": "Model"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 2
+              },
+              {
+                "color": "orange",
+                "value": 3
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "count(count by (model) (count_over_time({job=\"claude-code\", type=\"metrics\"} [24h])))",
+          "legendFormat": "Models",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Unique Models Used (24h)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 200
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 8,
+        "x": 0,
+        "y": 12
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ]
+        },
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "count_over_time({job=\"claude-code\", type=\"metrics\"}[24h])",
+          "legendFormat": "Turns",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Total Turns (24h)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 5000
+              },
+              {
+                "color": "red",
+                "value": 20000
+              }
+            ]
+          },
+          "unit": "short"
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 8,
+        "x": 8,
+        "y": 12
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "textMode": "auto"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "avg_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"turn_total=(?P<turn_total>[0-9]+)\" | unwrap turn_total [1h])",
+          "legendFormat": "Avg Tokens",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Avg Tokens/Turn (1h)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "unit": "short"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 4
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent",
+            "value"
+          ]
+        },
+        "pieType": "donut",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "count by (model) (count_over_time({job=\"claude-code\", type=\"metrics\"} [24h]))",
+          "legendFormat": "{{model}}",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Turns by Model (24h)",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "unit": "short"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 4
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent",
+            "value"
+          ]
+        },
+        "pieType": "donut",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "sum by (model) (sum_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"turn_output=(?P<turn_output>[0-9]+)\" | unwrap turn_output [24h]))",
+          "legendFormat": "{{model}}",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Output Tokens by Model (24h)",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "unit": "short"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 4
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent",
+            "value"
+          ]
+        },
+        "pieType": "donut",
+        "tooltip": {
+          "mode": "single"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "sum by (model) (sum_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"turn_input=(?P<turn_input>[0-9]+)\" | unwrap turn_input [24h]))",
+          "legendFormat": "{{model}}",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Input Tokens by Model (24h)",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "bars",
+            "fillOpacity": 20,
+            "lineWidth": 2,
+            "stacking": {
+              "mode": "normal"
+            }
+          },
+          "unit": "short"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 8,
+      "options": {
+        "fillOpacity": 20,
+        "gradientMode": "opacity",
+        "legend": {
+          "calcs": [
+            "sum",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "sum by (model) (count_over_time({job=\"claude-code\", type=\"metrics\"} [10m]))",
+          "legendFormat": "{{model}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Turns per Model Over Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 15,
+            "lineWidth": 2,
+            "stacking": {
+              "mode": "normal"
+            }
+          },
+          "unit": "short"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "id": 9,
+      "options": {
+        "fillOpacity": 15,
+        "legend": {
+          "calcs": [
+            "sum",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "sum by (model) (sum_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"turn_output=(?P<turn_output>[0-9]+)\" | unwrap turn_output [10m]))",
+          "legendFormat": "{{model}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Output Tokens per Model Over Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 15,
+            "lineWidth": 2,
+            "stacking": {
+              "mode": "normal"
+            }
+          },
+          "unit": "short"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "id": 10,
+      "options": {
+        "fillOpacity": 15,
+        "legend": {
+          "calcs": [
+            "sum",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "sum by (model) (sum_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"turn_input=(?P<turn_input>[0-9]+)\" | unwrap turn_input [10m]))",
+          "legendFormat": "{{model}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Input Tokens per Model Over Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 10,
+            "lineWidth": 2
+          },
+          "unit": "ms"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 32
+      },
+      "id": 11,
+      "options": {
+        "fillOpacity": 10,
+        "legend": {
+          "calcs": [
+            "mean",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "avg by (model) (avg_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"total_api_duration_ms=(?P<total_api_duration_ms>[0-9]+)\" | unwrap total_api_duration_ms [10m]))",
+          "legendFormat": "{{model}} API",
+          "queryType": "range",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "avg by (model) (avg_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"total_duration_ms=(?P<total_duration_ms>[0-9]+)\" | unwrap total_duration_ms [10m]))",
+          "legendFormat": "{{model}} Total",
+          "queryType": "range",
+          "refId": "B"
+        }
+      ],
+      "title": "Avg Response Time per Model (ms)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 10,
+            "lineWidth": 2
+          },
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 30
+              },
+              {
+                "color": "green",
+                "value": 60
+              }
+            ]
+          },
+          "unit": "percent"
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 32
+      },
+      "id": 12,
+      "options": {
+        "fillOpacity": 10,
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "avg by (model) (avg_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"cache_hit_ratio=(?P<cache_hit_ratio>[0-9]+)\" | unwrap cache_hit_ratio [10m]))",
+          "legendFormat": "{{model}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Cache Hit Ratio per Model (%)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Turns"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Avg Output"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "custom.width",
+                "value": 120
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Avg Input"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "custom.width",
+                "value": 120
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Avg Response (ms)"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "ms"
+              },
+              {
+                "id": "custom.width",
+                "value": 150
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Avg Cache Hit %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "custom.width",
+                "value": 140
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 30
+                    },
+                    {
+                      "color": "green",
+                      "value": 60
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 40
+      },
+      "id": 13,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Turns"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "sum by (model) (count_over_time({job=\"claude-code\", type=\"metrics\"} [24h]))",
+          "instant": true,
+          "legendFormat": "{{model}}",
+          "queryType": "instant",
+          "refId": "Turns"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "avg by (model) (avg_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"turn_output=(?P<turn_output>[0-9]+)\" | unwrap turn_output [24h]))",
+          "instant": true,
+          "legendFormat": "{{model}}",
+          "queryType": "instant",
+          "refId": "AvgOutput"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "avg by (model) (avg_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"turn_input=(?P<turn_input>[0-9]+)\" | unwrap turn_input [24h]))",
+          "instant": true,
+          "legendFormat": "{{model}}",
+          "queryType": "instant",
+          "refId": "AvgInput"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "avg by (model) (avg_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"total_api_duration_ms=(?P<total_api_duration_ms>[0-9]+)\" | unwrap total_api_duration_ms [24h]))",
+          "instant": true,
+          "legendFormat": "{{model}}",
+          "queryType": "instant",
+          "refId": "AvgResponse"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "avg by (model) (avg_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"cache_hit_ratio=(?P<cache_hit_ratio>[0-9]+)\" | unwrap cache_hit_ratio [24h]))",
+          "instant": true,
+          "legendFormat": "{{model}}",
+          "queryType": "instant",
+          "refId": "CacheHit"
+        }
+      ],
+      "title": "Model Usage Summary (24h)",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "renameByName": {
+              "Value #AvgInput": "Avg Input",
+              "Value #AvgOutput": "Avg Output",
+              "Value #AvgResponse": "Avg Response (ms)",
+              "Value #CacheHit": "Avg Cache Hit %",
+              "Value #Turns": "Turns",
+              "model": "Model"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "description": "Shows when the model changed between turns",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "bars",
+            "fillOpacity": 30,
+            "lineWidth": 0
+          },
+          "unit": "short"
+        }
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 48
+      },
+      "id": 14,
+      "options": {
+        "fillOpacity": 30,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "count by (model) (count_over_time({job=\"claude-code\", type=\"metrics\"} [5m]))",
+          "legendFormat": "{{model}}",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Model Switch Events",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "description": "5-hour and 7-day rolling rate limit consumption",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 15,
+            "lineWidth": 2
+          },
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        }
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 54
+      },
+      "id": 15,
+      "options": {
+        "fillOpacity": 15,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "last_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"rate_5h=(?P<rate_5h>[0-9]+)\" | unwrap rate_5h [10m])",
+          "legendFormat": "5-hour limit %",
+          "queryType": "range",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "last_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"rate_7d=(?P<rate_7d>[0-9]+)\" | unwrap rate_7d [10m])",
+          "legendFormat": "7-day limit %",
+          "queryType": "range",
+          "refId": "B"
+        }
+      ],
+      "title": "Rate Limit Usage Over Time (%)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 10,
+            "lineWidth": 2
+          },
+          "unit": "short"
+        }
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 54
+      },
+      "id": 16,
+      "options": {
+        "fillOpacity": 10,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "last_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"lines_added=(?P<lines_added>[0-9]+)\" | unwrap lines_added [10m])",
+          "legendFormat": "Lines Added",
+          "queryType": "range",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "last_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"lines_removed=(?P<lines_removed>[0-9]+)\" | unwrap lines_removed [10m])",
+          "legendFormat": "Lines Removed",
+          "queryType": "range",
+          "refId": "B"
+        }
+      ],
+      "title": "Code Lines Changed (Cumulative per Session)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 0
+      },
+      "id": 17,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "last_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"rate_5h=(?P<rate_5h>[0-9]+)\" | unwrap rate_5h [1h])",
+          "legendFormat": "5h",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "5-Hour Rate Limit",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "aeei85juwtji8e"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 3,
+        "y": 0
+      },
+      "id": 18,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "aeei85juwtji8e"
+          },
+          "expr": "last_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"rate_7d=(?P<rate_7d>[0-9]+)\" | unwrap rate_7d [1h])",
+          "legendFormat": "7d",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "7-Day Rate Limit",
+      "type": "gauge"
+    }
+  ],
+  "refresh": "30s",
+  "schemaVersion": 38,
+  "tags": [
+    "claude-code",
+    "model"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Claude Code \u2014 Model Usage",
+  "uid": "afie41lgldekge",
+  "version": 6
+}

@@ -42,12 +42,18 @@
       },
       "id": 1,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
-        }
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
       },
       "targets": [
         {
@@ -55,7 +61,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "max(last_over_time({job=\"claude-code\"} | regexp \"context_used=(?P<context_used>[0-9]+)\" | unwrap context_used [5m]))",
+          "expr": "max(last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"context_used=(?P<context_used>[0-9]+)\" | unwrap context_used [5m]))",
           "legendFormat": "",
           "refId": "A"
         }
@@ -95,12 +101,18 @@
       },
       "id": 2,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
-        }
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
       },
       "targets": [
         {
@@ -108,7 +120,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "max(last_over_time({job=\"claude-code\"} | regexp \"context_pct=(?P<context_pct>[0-9]+)\" | unwrap context_pct [5m]))",
+          "expr": "max(last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"context_pct=(?P<context_pct>[0-9]+)\" | unwrap context_pct [5m]))",
           "legendFormat": "",
           "refId": "A"
         }
@@ -148,12 +160,18 @@
       },
       "id": 3,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
-        }
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
       },
       "targets": [
         {
@@ -161,7 +179,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "max(last_over_time({job=\"claude-code\"} | regexp \"cache_hit_ratio=(?P<cache_hit_ratio>[0-9]+)\" | unwrap cache_hit_ratio [5m]))",
+          "expr": "max(last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"cache_hit_ratio=(?P<cache_hit_ratio>[0-9]+)\" | unwrap cache_hit_ratio [5m]))",
           "legendFormat": "",
           "refId": "A"
         }
@@ -201,12 +219,18 @@
       },
       "id": 4,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
-        }
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
       },
       "targets": [
         {
@@ -214,7 +238,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "max(last_over_time({job=\"claude-code\"} | regexp \"session_total=(?P<session_total>[0-9]+)\" | unwrap session_total [5m]))",
+          "expr": "max(last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"session_total=(?P<session_total>[0-9]+)\" | unwrap session_total [5m]))",
           "legendFormat": "",
           "refId": "A"
         }
@@ -238,11 +262,17 @@
       "id": 5,
       "options": {
         "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
-        }
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
       },
       "targets": [
         {
@@ -250,7 +280,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "max(last_over_time({job=\"claude-code\"} | regexp \"cache_read=(?P<cache_read>[0-9]+)\" | unwrap cache_read [5m]))",
+          "expr": "max(last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"cache_read=(?P<cache_read>[0-9]+)\" | unwrap cache_read [5m]))",
           "legendFormat": "",
           "refId": "A"
         }
@@ -274,11 +304,17 @@
       "id": 6,
       "options": {
         "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
-        }
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
       },
       "targets": [
         {
@@ -286,7 +322,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "max(last_over_time({job=\"claude-code\"} | regexp \"cache_creation=(?P<cache_creation>[0-9]+)\" | unwrap cache_creation [5m]))",
+          "expr": "max(last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"cache_creation=(?P<cache_creation>[0-9]+)\" | unwrap cache_creation [5m]))",
           "legendFormat": "",
           "refId": "A"
         }
@@ -328,11 +364,18 @@
       },
       "id": 7,
       "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
-        }
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
       },
       "targets": [
         {
@@ -340,7 +383,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "max(last_over_time({job=\"claude-code\"} | regexp \"context_pct=(?P<context_pct>[0-9]+)\" | unwrap context_pct [5m]))",
+          "expr": "max(last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"context_pct=(?P<context_pct>[0-9]+)\" | unwrap context_pct [5m]))",
           "legendFormat": "",
           "refId": "A"
         }
@@ -382,11 +425,18 @@
       },
       "id": 8,
       "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
-        }
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
       },
       "targets": [
         {
@@ -394,7 +444,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "max(last_over_time({job=\"claude-code\"} | regexp \"cache_hit_ratio=(?P<cache_hit_ratio>[0-9]+)\" | unwrap cache_hit_ratio [5m]))",
+          "expr": "max(last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"cache_hit_ratio=(?P<cache_hit_ratio>[0-9]+)\" | unwrap cache_hit_ratio [5m]))",
           "legendFormat": "",
           "refId": "A"
         }
@@ -442,7 +492,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "last_over_time({job=\"claude-code\"} | regexp \"context_pct=(?P<context_pct>[0-9]+)\" | unwrap context_pct [1m])",
+          "expr": "last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"context_pct=(?P<context_pct>[0-9]+)\" | unwrap context_pct [1m])",
           "legendFormat": "{{model}}",
           "refId": "A"
         }
@@ -492,7 +542,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "last_over_time({job=\"claude-code\"} | regexp \"cache_hit_ratio=(?P<cache_hit_ratio>[0-9]+)\" | unwrap cache_hit_ratio [1m])",
+          "expr": "last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"cache_hit_ratio=(?P<cache_hit_ratio>[0-9]+)\" | unwrap cache_hit_ratio [1m])",
           "legendFormat": "{{model}}",
           "refId": "A"
         }
@@ -525,7 +575,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "last_over_time({job=\"claude-code\"} | regexp \"cache_creation=(?P<cache_creation>[0-9]+)\" | unwrap cache_creation [1m])",
+          "expr": "last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"cache_creation=(?P<cache_creation>[0-9]+)\" | unwrap cache_creation [1m])",
           "legendFormat": "{{model}}",
           "refId": "A"
         },
@@ -534,7 +584,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "last_over_time({job=\"claude-code\"} | regexp \"cache_read=(?P<cache_read>[0-9]+)\" | unwrap cache_read [1m])",
+          "expr": "last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"cache_read=(?P<cache_read>[0-9]+)\" | unwrap cache_read [1m])",
           "legendFormat": "{{model}}",
           "refId": "B"
         }
@@ -567,7 +617,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "last_over_time({job=\"claude-code\"} | regexp \"session_input=(?P<session_input>[0-9]+)\" | unwrap session_input [1m])",
+          "expr": "last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"session_input=(?P<session_input>[0-9]+)\" | unwrap session_input [1m])",
           "legendFormat": "{{model}}",
           "refId": "A"
         },
@@ -576,7 +626,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "last_over_time({job=\"claude-code\"} | regexp \"session_output=(?P<session_output>[0-9]+)\" | unwrap session_output [1m])",
+          "expr": "last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"session_output=(?P<session_output>[0-9]+)\" | unwrap session_output [1m])",
           "legendFormat": "{{model}}",
           "refId": "B"
         }
@@ -610,7 +660,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "last_over_time({job=\"claude-code\"} | regexp \"turn_input=(?P<turn_input>[0-9]+)\" | unwrap turn_input [1m])",
+          "expr": "last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"turn_input=(?P<turn_input>[0-9]+)\" | unwrap turn_input [1m])",
           "legendFormat": "{{model}}",
           "refId": "A"
         },
@@ -619,7 +669,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "last_over_time({job=\"claude-code\"} | regexp \"turn_output=(?P<turn_output>[0-9]+)\" | unwrap turn_output [1m])",
+          "expr": "last_over_time({job=\"claude-code\", model=~\".+\"} | regexp \"turn_output=(?P<turn_output>[0-9]+)\" | unwrap turn_output [1m])",
           "legendFormat": "{{model}}",
           "refId": "B"
         }
@@ -647,7 +697,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "{job=\"claude-code\"}",
+          "expr": "{job=\"claude-code\", model=~\".+\"}",
           "legendFormat": "",
           "refId": "A"
         }
@@ -686,12 +736,18 @@
       },
       "id": 15,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
-        }
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
       },
       "targets": [
         {
@@ -699,7 +755,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "max(last_over_time({job=\"claude-code\",type=\"metrics\"} | regexp \"turn_api_duration_ms=(?P<v>[1-9][0-9]{3,5})\" | unwrap v [24h])) / 1000",
+          "expr": "max(last_over_time({job=\"claude-code\", model=~\".+\",type=\"metrics\"} | regexp \"turn_api_duration_ms=(?P<v>[1-9][0-9]{3,5})\" | unwrap v [24h])) / 1000",
           "legendFormat": "",
           "queryType": "instant",
           "refId": "A"
@@ -740,12 +796,18 @@
       },
       "id": 16,
       "options": {
-        "colorMode": "background",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
-        }
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value"
       },
       "targets": [
         {
@@ -753,7 +815,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "max(last_over_time({job=\"claude-code\",type=\"metrics\"} | regexp \"turn_total_duration_ms=(?P<v>[1-9][0-9]{3,5})\" | unwrap v [24h])) / 1000",
+          "expr": "max(last_over_time({job=\"claude-code\", model=~\".+\",type=\"metrics\"} | regexp \"turn_total_duration_ms=(?P<v>[1-9][0-9]{3,5})\" | unwrap v [24h])) / 1000",
           "legendFormat": "",
           "queryType": "instant",
           "refId": "A"
@@ -788,7 +850,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "max by (model) (max_over_time({job=\"claude-code\",type=\"metrics\"} | regexp \"turn_api_duration_ms=(?P<v>[1-9][0-9]{3,4})\" | unwrap v [10m])) / 1000",
+          "expr": "max by (model) (max_over_time({job=\"claude-code\", model=~\".+\",type=\"metrics\"} | regexp \"turn_api_duration_ms=(?P<v>[1-9][0-9]{3,4})\" | unwrap v [10m])) / 1000",
           "legendFormat": "{{model}} API",
           "queryType": "range",
           "refId": "A"
@@ -798,7 +860,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "max by (model) (max_over_time({job=\"claude-code\",type=\"metrics\"} | regexp \"turn_total_duration_ms=(?P<v>[1-9][0-9]{3,4})\" | unwrap v [10m])) / 1000",
+          "expr": "max by (model) (max_over_time({job=\"claude-code\", model=~\".+\",type=\"metrics\"} | regexp \"turn_total_duration_ms=(?P<v>[1-9][0-9]{3,4})\" | unwrap v [10m])) / 1000",
           "legendFormat": "{{model}} Total",
           "queryType": "range",
           "refId": "B"
@@ -834,7 +896,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "(max by (model) (max_over_time({job=\"claude-code\",type=\"metrics\"} | regexp \"turn_total_duration_ms=(?P<v>[1-9][0-9]{3,4})\" | unwrap v [10m])) - max by (model) (max_over_time({job=\"claude-code\",type=\"metrics\"} | regexp \"turn_api_duration_ms=(?P<v>[1-9][0-9]{3,4})\" | unwrap v [10m]))) / 1000",
+          "expr": "(max by (model) (max_over_time({job=\"claude-code\", model=~\".+\",type=\"metrics\"} | regexp \"turn_total_duration_ms=(?P<v>[1-9][0-9]{3,4})\" | unwrap v [10m])) - max by (model) (max_over_time({job=\"claude-code\", model=~\".+\",type=\"metrics\"} | regexp \"turn_api_duration_ms=(?P<v>[1-9][0-9]{3,4})\" | unwrap v [10m]))) / 1000",
           "legendFormat": "{{model}}",
           "queryType": "range",
           "refId": "A"
@@ -883,12 +945,16 @@
       "options": {
         "colorMode": "value",
         "graphMode": "none",
+        "justifyMode": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
+          ],
+          "fields": "",
+          "values": false
         },
-        "textMode": "auto"
+        "text": {},
+        "textMode": "value"
       },
       "targets": [
         {
@@ -896,7 +962,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "max(avg_over_time({job=\"claude-code\",type=\"metrics\"} | regexp \"turn_api_duration_ms=(?P<v>[1-9][0-9]{3,5})\" | unwrap v [24h])) / 1000",
+          "expr": "max(avg_over_time({job=\"claude-code\", model=~\".+\",type=\"metrics\"} | regexp \"turn_api_duration_ms=(?P<v>[1-9][0-9]{3,5})\" | unwrap v [24h])) / 1000",
           "legendFormat": "",
           "queryType": "instant",
           "refId": "A"
@@ -946,12 +1012,16 @@
       "options": {
         "colorMode": "value",
         "graphMode": "none",
+        "justifyMode": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
+          ],
+          "fields": "",
+          "values": false
         },
-        "textMode": "auto"
+        "text": {},
+        "textMode": "value"
       },
       "targets": [
         {
@@ -959,7 +1029,7 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "max(avg_over_time({job=\"claude-code\",type=\"metrics\"} | regexp \"turn_total_duration_ms=(?P<v>[1-9][0-9]{3,5})\" | unwrap v [24h])) / 1000",
+          "expr": "max(avg_over_time({job=\"claude-code\", model=~\".+\",type=\"metrics\"} | regexp \"turn_total_duration_ms=(?P<v>[1-9][0-9]{3,5})\" | unwrap v [24h])) / 1000",
           "legendFormat": "",
           "queryType": "instant",
           "refId": "A"
@@ -979,5 +1049,5 @@
   "timezone": "browser",
   "title": "Claude Code Metrics",
   "uid": "dfie2npgzl1xcb",
-  "version": 12
+  "version": 19
 }

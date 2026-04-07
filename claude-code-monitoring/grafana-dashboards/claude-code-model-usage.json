@@ -288,6 +288,16 @@
           "color": {
             "mode": "palette-classic"
           },
+          "custom": {
+            "fillOpacity": 80,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "stacking": "none"
+          },
           "unit": "short"
         }
       },
@@ -299,19 +309,18 @@
       },
       "id": 5,
       "options": {
+        "groupWidth": 0.7,
         "legend": {
-          "displayMode": "table",
+          "calcs": [],
+          "displayMode": "list",
           "placement": "right",
-          "showLegend": true,
-          "values": [
-            "percent",
-            "value"
-          ]
+          "showLegend": true
         },
-        "pieType": "donut",
         "tooltip": {
-          "mode": "single"
-        }
+          "mode": "multi"
+        },
+        "xTickLabel": "",
+        "xTickLabelRotation": 0
       },
       "targets": [
         {
@@ -319,14 +328,23 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "count by (model) (count_over_time({job=\"claude-code\", type=\"metrics\"} [24h]))",
+          "expr": "sum by (model) (count_over_time({job=\"claude-code\", type=\"metrics\"} [24h]))",
           "legendFormat": "{{model}}",
           "queryType": "instant",
           "refId": "A"
         }
       ],
       "title": "Turns by Model (24h)",
-      "type": "piechart"
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "barchart"
     },
     {
       "datasource": {
@@ -337,6 +355,16 @@
         "defaults": {
           "color": {
             "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "stacking": "none"
           },
           "unit": "short"
         }
@@ -349,19 +377,18 @@
       },
       "id": 6,
       "options": {
+        "groupWidth": 0.7,
         "legend": {
-          "displayMode": "table",
+          "calcs": [],
+          "displayMode": "list",
           "placement": "right",
-          "showLegend": true,
-          "values": [
-            "percent",
-            "value"
-          ]
+          "showLegend": true
         },
-        "pieType": "donut",
         "tooltip": {
-          "mode": "single"
-        }
+          "mode": "multi"
+        },
+        "xTickLabel": "",
+        "xTickLabelRotation": 0
       },
       "targets": [
         {
@@ -369,14 +396,23 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "sum by (model) (sum_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"turn_output=(?P<turn_output>[0-9]+)\" | unwrap turn_output [24h]))",
+          "expr": "sum by (model) (sum_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"turn_output=(?P<v>[0-9]+)\" | unwrap v [24h]))",
           "legendFormat": "{{model}}",
           "queryType": "instant",
           "refId": "A"
         }
       ],
       "title": "Output Tokens by Model (24h)",
-      "type": "piechart"
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "barchart"
     },
     {
       "datasource": {
@@ -387,6 +423,16 @@
         "defaults": {
           "color": {
             "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "stacking": "none"
           },
           "unit": "short"
         }
@@ -399,19 +445,18 @@
       },
       "id": 7,
       "options": {
+        "groupWidth": 0.7,
         "legend": {
-          "displayMode": "table",
+          "calcs": [],
+          "displayMode": "list",
           "placement": "right",
-          "showLegend": true,
-          "values": [
-            "percent",
-            "value"
-          ]
+          "showLegend": true
         },
-        "pieType": "donut",
         "tooltip": {
-          "mode": "single"
-        }
+          "mode": "multi"
+        },
+        "xTickLabel": "",
+        "xTickLabelRotation": 0
       },
       "targets": [
         {
@@ -419,14 +464,23 @@
             "type": "loki",
             "uid": "aeei85juwtji8e"
           },
-          "expr": "sum by (model) (sum_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"turn_input=(?P<turn_input>[0-9]+)\" | unwrap turn_input [24h]))",
+          "expr": "sum by (model) (sum_over_time({job=\"claude-code\", type=\"metrics\"} | regexp \"turn_input=(?P<v>[0-9]+)\" | unwrap v [24h]))",
           "legendFormat": "{{model}}",
           "queryType": "instant",
           "refId": "A"
         }
       ],
       "title": "Input Tokens by Model (24h)",
-      "type": "piechart"
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "barchart"
     },
     {
       "datasource": {
@@ -1292,5 +1346,5 @@
   "timezone": "browser",
   "title": "Claude Code \u2014 Model Usage",
   "uid": "afie41lgldekge",
-  "version": 6
+  "version": 13
 }
